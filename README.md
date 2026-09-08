@@ -1,5 +1,11 @@
 <div dir="rtl">
 
+
+
+<p align="center">
+  <img src="docs/assets/img/2.png" alt="Names Of Allah">
+</p>
+
 # أسماء الله الحسنى — قاعدة بيانات مفتوحة
 
 [![الإصدار](https://img.shields.io/github/v/release/rn0x/Names_Of_Allah_Json?label=الإصدار&color=gold)](https://github.com/rn0x/Names_Of_Allah_Json/releases/latest)
@@ -9,7 +15,9 @@
 
 قاعدة بيانات منظّمة ومجانية للأسماء الحسنى **التسعة والتسعين** المشروحة في كتاب «شرح أسماء الله الحسنى في ضوء الكتاب والسنة»، صالحة للاستخدام المباشر في التطبيقات وقواعد البيانات وواجهات البرمجة (API)، مع موقع تعريفي لتحميلها.
 
-**🌐 الموقع:** https://rn0x.github.io/Names_Of_Allah_Json/ — **⬇️ التحميل:** [صفحة الإصدارات](https://github.com/rn0x/Names_Of_Allah_Json/releases/latest)
+**🌐 الموقع:** https://rn0x.github.io/Names_Of_Allah_Json/ 
+
+**⬇️ التحميل:** [صفحة الإصدارات](https://github.com/rn0x/Names_Of_Allah_Json/releases/latest)
 
 ![الموقع التعريفي](docs/assets/img/site-hero.png)
 ![استعراض الأسماء](docs/assets/img/site-grid.png)
@@ -139,5 +147,11 @@ python3 scripts/build_formats.py
 
 - **متن الكتاب الأصلي** حقٌّ للمؤلف والناشر — ما هنا ملخصات واقتباسات قصيرة موثقة لغرض تعليمي وبحثي مع الإحالة للمصدر.
 - **هيكلة البيانات والسكربتات والموقع** في هذا المستودع تحت رخصة [MIT](LICENSE) © 2026 rn0x.
+
+
+
+<p align="center">
+  <img src="docs/assets/img/1.png" width="150" alt="Names Of Allah">
+</p>
 
 </div>

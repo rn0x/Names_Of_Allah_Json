@@ -3,48 +3,122 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>أسماء الله الحسنى — قاعدة بيانات مفتوحة (99 اسماً)</title>
-  <meta name="description" content="قاعدة بيانات منظمة للأسماء الحسنى الـ99 من كتاب شرح أسماء الله الحسنى في ضوء الكتاب والسنة للشيخ سعيد القحطاني — JSON وSQLite وCSV للتحميل المجاني.">
+  <title>أسماء الله الحسنى — قاعدة بيانات مفتوحة للتحميل</title>
+  <meta name="description" content="حمّل قاعدة بيانات الأسماء الحسنى الـ99 من كتاب شرح أسماء الله الحسنى للشيخ سعيد القحطاني: JSON وSQLite وSQL وCSV — بالمعاني والأدلة والمصادر.">
   <meta property="og:title" content="أسماء الله الحسنى — قاعدة بيانات مفتوحة">
-  <meta property="og:description" content="99 اسماً بالمعاني والأدلة والمصادر — حمّلها JSON / SQLite / CSV.">
+  <meta property="og:description" content="99 اسماً بالمعاني والأدلة والمصادر — حمّلها JSON / SQLite / SQL / CSV.">
   <meta property="og:type" content="website">
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-  <a class="skip" href="#names">تخطَّ إلى الأسماء</a>
+  <a class="skip" href="#download">تخطَّ إلى التحميل</a>
 
-  <header class="hero">
+  <nav class="topnav" aria-label="التنقل الرئيسي">
+    <a class="brand" href="#top">أسماء الله الحسنى</a>
+    <div class="links">
+      <a href="#about">نبذة</a>
+      <a href="#schema">هيكل البيانات</a>
+      <a href="#download">التحميل</a>
+      <a href="#browse">استعراض</a>
+    </div>
+  </nav>
+
+  <header class="hero" id="top">
     <p class="basmala">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</p>
-    <h1>أسماء الله الحسنى</h1>
-    <p class="subtitle">قاعدة بيانات مفتوحة — الـ99 اسماً المشروحة في كتاب «شرح أسماء الله الحسنى في ضوء الكتاب والسنة» للشيخ د. سعيد بن علي بن وهف القحطاني</p>
-    <nav aria-label="روابط">
-      <a class="btn" href="#download">تحميل قاعدة البيانات</a>
-      <a class="btn ghost" href="https://shamela.ws/book/96493" target="_blank" rel="noopener">الكتاب في المكتبة الشاملة</a>
-      <a class="btn ghost" href="https://github.com/rn0x/Names_Of_Allah_Json" target="_blank" rel="noopener">GitHub</a>
-    </nav>
-    <dl class="stats" id="stats" aria-label="إحصاءات">
+    <h1>قاعدة بيانات أسماء الله الحسنى</h1>
+    <p class="subtitle">الـ99 اسماً المشروحة في كتاب «شرح أسماء الله الحسنى في ضوء الكتاب والسنة» للشيخ د. سعيد بن علي بن وهف القحطاني — منظمة بصيغ JSON وSQLite وSQL وCSV، جاهزة لتطبيقاتك وقواعد بياناتك</p>
+    <div class="cta">
+      <a class="btn" href="#download">⬇ تحميل قاعدة البيانات</a>
+      <a class="btn ghost" href="https://github.com/rn0x/Names_Of_Allah_Json/releases/latest" target="_blank" rel="noopener">صفحة الإصدارات</a>
+    </div>
+    <dl class="stats" aria-label="إحصاءات المحتوى">
       <div><dt>اسماً</dt><dd data-stat="names">99</dd></div>
-      <div><dt>آية مستشهداً بها</dt><dd data-stat="quran">…</dd></div>
+      <div><dt>آية بمصدرها</dt><dd data-stat="quran">…</dd></div>
       <div><dt>حديثاً بتخريجه</dt><dd data-stat="hadith">…</dd></div>
       <div><dt>مرجعاً كتابياً</dt><dd data-stat="sources">…</dd></div>
     </dl>
   </header>
 
   <main>
+    <section id="about" aria-labelledby="about-h">
+      <h2 id="about-h">نبذة عن قاعدة البيانات</h2>
+      <div class="cols">
+        <div>
+          <h3>ما هي؟</h3>
+          <p>استخراج منظم للأسماء الحسنى التسعة والتسعين التي شرحها المؤلف في <strong>المبحث الخامس عشر</strong> من كتابه، بنفس ترتيبه، مع المعنى المختصر وخلاصة الشرح والأدلة القرآنية والحديثية — كل دليل مرفق بمصدره من حواشي الكتاب (السورة ورقم الآية، وتخريج الحديث) — إضافة إلى أقوال العلماء المنقولة والمراجع والأسماء المرتبطة ورابط صفحة الشاملة لكل اسم.</p>
+          <h3>لمن؟</h3>
+          <p>مطوري التطبيقات الإسلامية، والباحثين، وطلاب العلم — للاستخدام المباشر في التطبيقات وقواعد البيانات وواجهات API.</p>
+        </div>
+        <div>
+          <h3>الكتاب المصدر</h3>
+          <table>
+            <tbody>
+              <tr><th>الكتاب</th><td>شرح أسماء الله الحسنى في ضوء الكتاب والسنة</td></tr>
+              <tr><th>المؤلف</th><td>د. سعيد بن علي بن وهف القحطاني</td></tr>
+              <tr><th>النوع</th><td>شرح عقدي في توحيد الأسماء والصفات</td></tr>
+              <tr><th>الناشر</th><td>مطبعة سفير، الرياض</td></tr>
+              <tr><th>الصفحات</th><td>264</td></tr>
+              <tr><th>المصدر الرقمي</th><td><a href="https://shamela.ws/book/96493" target="_blank" rel="noopener">المكتبة الشاملة</a></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="schema" aria-labelledby="schema-h">
+      <h2 id="schema-h">هيكل البيانات ومعنى الحقول</h2>
+      <table class="fields">
+        <thead><tr><th>الحقل</th><th>معناه</th></tr></thead>
+        <tbody>
+          <tr><td><code>id</code></td><td>ترتيب الاسم عند المؤلف من 1 إلى 99</td></tr>
+          <tr><td><code>name</code></td><td>الاسم مجرداً من التشكيل للبحث والفهرسة</td></tr>
+          <tr><td><code>name_arabic</code></td><td>الاسم مشكولاً كما ورد في الكتاب</td></tr>
+          <tr><td><code>meaning</code></td><td>معنى الاسم باختصار</td></tr>
+          <tr><td><code>explanation</code></td><td>خلاصة شرح المؤلف (ليست نسخاً كاملاً)</td></tr>
+          <tr><td><code>quran_evidence</code></td><td>آيات الاستدلال، كل آية مع سورتها ورقمها — <code>null</code> عند غياب الترقيم</td></tr>
+          <tr><td><code>hadith_evidence</code></td><td>الأحاديث المرتبطة بالاسم فقط، مع تخريجها ومصدرها</td></tr>
+          <tr><td><code>scholarly_statements</code></td><td>أقوال العلماء المقتبسة في الشرح (ابن القيم، السعدي، ابن كثير...)</td></tr>
+          <tr><td><code>sources</code></td><td>المراجع الكتابية من الحواشي (الكتاب ورقم الصفحة)</td></tr>
+          <tr><td><code>related_names</code></td><td>أسماء يشرحها المؤلف معاً (كالعلي والأعلى والمتعال)</td></tr>
+          <tr><td><code>book_reference</code></td><td>الصفحة والمبحث ورابط مباشر لصفحة المكتبة الشاملة</td></tr>
+        </tbody>
+      </table>
+      <p>ملف CSV الواحد يضم كل شيء بأعمدة: <code>id, name, name_arabic, category, text, source, page, chapter, url</code> حيث <code>category</code> إحدى: <code>meaning · explanation · quran · hadith · scholarly · source · related</code>.</p>
+    </section>
+
     <section id="download" aria-labelledby="dl-h">
-      <h2 id="dl-h">التحميل</h2>
+      <h2 id="dl-h">تحميل قاعدة البيانات</h2>
+      <p class="hint">العدّادات حيّة من صفحة الإصدارات على GitHub.</p>
       <ul class="downloads">
-        <li><a href="downloads/asma_allah_alhusna_saeed_alqahtani.json" download><strong>JSON</strong><span>الملف الرئيسي · ~423KB</span></a></li>
-        <li><a href="downloads/asma_allah_alhusna.db" download><strong>SQLite</strong><span>قاعدة جاهزة · ~508KB</span></a></li>
-        <li><a href="downloads/asma_allah_alhusna.sql" download><strong>SQL</strong><span>نسخة dump · ~406KB</span></a></li>
-        <li><a href="downloads/asma_allah_alhusna_names.csv" download><strong>CSV</strong><span>الأسماء · ~259KB</span></a></li>
-        <li><a href="downloads/asma_allah_alhusna_quran.csv" download><strong>CSV</strong><span>الآيات · ~74KB</span></a></li>
-        <li><a href="downloads/asma_allah_alhusna_hadith.csv" download><strong>CSV</strong><span>الأحاديث · ~21KB</span></a></li>
+        <li>
+          <a href="downloads/asma_allah_alhusna_saeed_alqahtani.json" download>
+            <strong>JSON</strong><span>الملف الرئيسي · ~423KB</span>
+            <em>⬇ <span data-dl="asma_allah_alhusna_saeed_alqahtani.json">…</span></em>
+          </a>
+        </li>
+        <li>
+          <a href="downloads/asma_allah_alhusna.db" download>
+            <strong>SQLite</strong><span>قاعدة جاهزة (7 جداول) · ~508KB</span>
+            <em>⬇ <span data-dl="asma_allah_alhusna.db">…</span></em>
+          </a>
+        </li>
+        <li>
+          <a href="downloads/asma_allah_alhusna.sql" download>
+            <strong>SQL</strong><span>نسخة dump · ~406KB</span>
+            <em>⬇ <span data-dl="asma_allah_alhusna.sql">…</span></em>
+          </a>
+        </li>
+        <li>
+          <a href="downloads/asma_allah_alhusna_full.csv" download>
+            <strong>CSV</strong><span>ملف واحد شامل (956 صفاً) · ~500KB</span>
+            <em>⬇ <span data-dl="asma_allah_alhusna_full.csv">…</span></em>
+          </a>
+        </li>
       </ul>
     </section>
 
     <section id="browse" aria-labelledby="br-h">
-      <h2 id="br-h">تصفح الأسماء</h2>
+      <h2 id="br-h">استعراض سريع</h2>
       <label class="search">
         <span class="visually-hidden">بحث في الأسماء</span>
         <input type="search" id="q" placeholder="ابحث بالاسم أو المعنى… (مثال: الرحمن، الشفاء)" autocomplete="off">
@@ -56,7 +130,7 @@
   </main>
 
   <footer>
-    <p>البيانات ملخصات موثقة من الكتاب لغرض تعليمي/بحثي — النصوص الأصلية حقوقها للمؤلف والناشر. هيكلة البيانات والموقع برخصة <a href="https://github.com/rn0x/Names_Of_Allah_Json/blob/main/LICENSE">MIT</a>.</p>
+    <p>البيانات ملخصات موثقة من الكتاب لغرض تعليمي وبحثي — متن الكتاب الأصلي حقٌّ للمؤلف والناشر. الهيكلة والسكربتات والموقع برخصة <a href="https://github.com/rn0x/Names_Of_Allah_Json/blob/main/LICENSE">MIT</a>.</p>
   </footer>
 
   <script src="assets/js/app.js" defer></script>

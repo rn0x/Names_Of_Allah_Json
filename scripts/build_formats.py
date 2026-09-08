@@ -142,47 +142,36 @@ def main() -> None:
         for line in con.iterdump():
             f.write(line + "\n")
 
-    # CSVs (UTF-8 with BOM for Excel Arabic support)
+    # Single denormalized CSV (long format): every piece of data in one file.
+    # Columns: id | name | name_arabic | category | text | source | page | chapter | url
+    # category ∈ {info, meaning, quran, hadith, scholarly, source, related}
     def write_csv(path, header, rows):
         with open(path, "w", encoding="utf-8-sig", newline="") as f:
             w = csv.writer(f)
             w.writerow(header)
             w.writerows(rows)
 
+    rows = []
+    for r in records:
+        ref = r.get("book_reference", {}) or {}
+        page, chapter, url = ref.get("page", ""), ref.get("chapter", ""), ref.get("url", "")
+        base = [r["id"], r.get("name", ""), r.get("name_arabic", "")]
+        rows.append(base + ["meaning", r.get("meaning", "") or "", "", page, chapter, url])
+        rows.append(base + ["explanation", r.get("explanation", "") or "", "", page, chapter, url])
+        for q in r.get("quran_evidence", []) or []:
+            rows.append(base + ["quran", q.get("text", ""), q.get("source", "") or "", page, chapter, url])
+        for h in r.get("hadith_evidence", []) or []:
+            rows.append(base + ["hadith", h.get("text", ""), h.get("source", "") or "", page, chapter, url])
+        for s in r.get("scholarly_statements", []) or []:
+            rows.append(base + ["scholarly", s, "", page, chapter, url])
+        for s in r.get("sources", []) or []:
+            rows.append(base + ["source", s, "", page, chapter, url])
+        for rel in r.get("related_names", []) or []:
+            rows.append(base + ["related", rel, "", page, chapter, url])
     write_csv(
-        OUT / "asma_allah_alhusna_names.csv",
-        ["id", "name", "name_arabic", "meaning", "explanation", "page", "chapter", "url", "related_names"],
-        [(
-            r["id"], r.get("name", ""), r.get("name_arabic", ""), r.get("meaning", ""),
-            r.get("explanation", ""), (r.get("book_reference", {}) or {}).get("page", ""),
-            (r.get("book_reference", {}) or {}).get("chapter", ""),
-            (r.get("book_reference", {}) or {}).get("url", ""),
-            "|".join(r.get("related_names", []) or []),
-        ) for r in records],
-    )
-    write_csv(
-        OUT / "asma_allah_alhusna_quran.csv",
-        ["name_id", "name", "text", "source"],
-        [(r["id"], r.get("name", ""), q.get("text", ""), q.get("source", "") or "")
-         for r in records for q in (r.get("quran_evidence", []) or [])],
-    )
-    write_csv(
-        OUT / "asma_allah_alhusna_hadith.csv",
-        ["name_id", "name", "text", "source"],
-        [(r["id"], r.get("name", ""), h.get("text", ""), h.get("source", "") or "")
-         for r in records for h in (r.get("hadith_evidence", []) or [])],
-    )
-    write_csv(
-        OUT / "asma_allah_alhusna_scholarly.csv",
-        ["name_id", "name", "statement"],
-        [(r["id"], r.get("name", ""), s)
-         for r in records for s in (r.get("scholarly_statements", []) or [])],
-    )
-    write_csv(
-        OUT / "asma_allah_alhusna_sources.csv",
-        ["name_id", "name", "source"],
-        [(r["id"], r.get("name", ""), s)
-         for r in records for s in (r.get("sources", []) or [])],
+        OUT / "asma_allah_alhusna_full.csv",
+        ["id", "name", "name_arabic", "category", "text", "source", "page", "chapter", "url"],
+        rows,
     )
 
     # integrity check

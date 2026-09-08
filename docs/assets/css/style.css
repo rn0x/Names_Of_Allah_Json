@@ -1,10 +1,10 @@
 :root {
   --bg: #0f1f1a;
-  --bg-soft: #16291f;
   --card: #ffffff;
   --ink: #1d2b25;
   --muted: #5c6f65;
   --gold: #c9a227;
+  --gold-deep: #a8841c;
   --gold-soft: #f4e9c8;
   --green: #146642;
   --green-dark: #0d4a2f;
@@ -13,6 +13,8 @@
 }
 
 * { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
 
 body {
   margin: 0;
@@ -30,7 +32,7 @@ body {
   color: #000;
   padding: .4rem 1rem;
   border-radius: 8px;
-  z-index: 10;
+  z-index: 20;
 }
 .skip:focus { top: .6rem; }
 
@@ -41,8 +43,35 @@ body {
   clip: rect(0 0 0 0);
 }
 
+/* ---------- top nav ---------- */
+.topnav {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: .55rem 1.4rem;
+  background: rgba(15, 31, 26, .92);
+  backdrop-filter: blur(8px);
+  border-bottom: 2px solid var(--gold);
+}
+.topnav .brand {
+  color: #fff;
+  font-weight: 800;
+  text-decoration: none;
+  font-size: 1.05rem;
+}
+.topnav .links { display: flex; gap: 1.1rem; flex-wrap: wrap; }
+.topnav .links a { color: #e7dfc8; text-decoration: none; font-size: .95rem; }
+.topnav .links a:hover { color: var(--gold-soft); }
+
+/* ---------- hero ---------- */
 .hero {
-  background: radial-gradient(120% 130% at 50% 0%, #1d4030 0%, var(--bg) 70%);
+  background:
+    radial-gradient(60% 90% at 85% 10%, rgba(201, 162, 39, .14), transparent 60%),
+    radial-gradient(120% 130% at 50% 0%, #1d4030 0%, var(--bg) 70%);
   color: #f3efe2;
   text-align: center;
   padding: 3.5rem 1.25rem 2.5rem;
@@ -53,9 +82,9 @@ body {
 
 .hero h1 { font-size: clamp(2rem, 6vw, 3.2rem); margin: .2rem 0; color: #fff; }
 
-.subtitle { max-width: 44rem; margin: 0 auto 1.4rem; color: #d9d2bd; }
+.subtitle { max-width: 46rem; margin: 0 auto 1.4rem; color: #d9d2bd; }
 
-nav { display: flex; gap: .6rem; justify-content: center; flex-wrap: wrap; }
+.cta { display: flex; gap: .6rem; justify-content: center; flex-wrap: wrap; }
 
 .btn {
   display: inline-block;
@@ -63,7 +92,7 @@ nav { display: flex; gap: .6rem; justify-content: center; flex-wrap: wrap; }
   color: #231d00;
   font-weight: 700;
   text-decoration: none;
-  padding: .55rem 1.4rem;
+  padding: .55rem 1.5rem;
   border-radius: 999px;
 }
 .btn:hover { filter: brightness(1.07); }
@@ -80,7 +109,7 @@ nav { display: flex; gap: .6rem; justify-content: center; flex-wrap: wrap; }
   flex-wrap: wrap;
   margin: 2rem auto 0;
   padding: 0;
-  max-width: 52rem;
+  max-width: 56rem;
 }
 .stats div {
   background: rgba(255, 255, 255, .07);
@@ -92,35 +121,54 @@ nav { display: flex; gap: .6rem; justify-content: center; flex-wrap: wrap; }
 .stats dt { font-size: .85rem; color: #d9d2bd; }
 .stats dd { margin: 0; font-size: 1.6rem; font-weight: 800; color: #fff; }
 
-main { max-width: 72rem; margin: 0 auto; padding: 2rem 1.25rem 3rem; }
+/* ---------- layout ---------- */
+main { max-width: 72rem; margin: 0 auto; padding: 1rem 1.25rem 3rem; }
+
+section { padding-top: 1.2rem; }
 
 h2 {
   font-size: 1.5rem;
   border-right: 5px solid var(--gold);
   padding-right: .7rem;
 }
+h3 { color: var(--green-dark); margin-bottom: .3rem; }
+
+.cols { display: grid; grid-template-columns: 1.2fr 1fr; gap: 1.5rem; }
+@media (max-width: 48rem) { .cols { grid-template-columns: 1fr; } }
+
+table { width: 100%; border-collapse: collapse; background: #fff; border-radius: var(--radius); overflow: hidden; font-size: .93rem; }
+th, td { border-bottom: 1px solid var(--line); padding: .55rem .9rem; text-align: right; vertical-align: top; }
+thead th { background: var(--green-dark); color: #fff; }
+tbody th { background: #faf7ee; white-space: nowrap; color: var(--green-dark); }
+table code { background: #f1ece0; padding: .05rem .4rem; border-radius: 6px; font-size: .85em; }
+table a { color: var(--green); }
+
+/* ---------- downloads ---------- */
+.hint { color: var(--muted); }
 
 .downloads {
   list-style: none;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(10.5rem, 1fr));
-  gap: .8rem;
+  grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+  gap: .9rem;
   padding: 0;
 }
 .downloads a {
   display: block;
-  background: var(--card);
-  border: 1px solid var(--line);
+  background: linear-gradient(180deg, #fff, #fbf8ef);
+  border: 1.5px solid var(--line);
   border-radius: var(--radius);
-  padding: .9rem 1rem;
+  padding: 1rem;
   text-decoration: none;
   color: var(--ink);
   text-align: center;
 }
-.downloads a:hover { border-color: var(--gold); box-shadow: 0 4px 14px rgba(0, 0, 0, .08); }
-.downloads strong { display: block; font-size: 1.15rem; color: var(--green-dark); }
+.downloads a:hover { border-color: var(--gold); box-shadow: 0 6px 18px rgba(0, 0, 0, .09); transform: translateY(-2px); }
+.downloads strong { display: block; font-size: 1.25rem; color: var(--green-dark); }
 .downloads span { font-size: .85rem; color: var(--muted); }
+.downloads em { display: block; font-style: normal; font-size: .85rem; color: var(--gold-deep); font-weight: 700; margin-top: .3rem; }
 
+/* ---------- browse ---------- */
 .search input {
   width: 100%;
   font: inherit;
@@ -147,9 +195,9 @@ h2 {
   border-radius: var(--radius);
   padding: 1.1rem 1.2rem;
 }
-.card h3 { margin: 0; font-size: 1.35rem; color: var(--green-dark); }
+.card h3 { margin: 0; font-size: 1.35rem; }
 .card h3 small { color: var(--muted); font-weight: 400; }
-.card .meaning { margin: .3rem 0 .8rem; color: var(--ink); }
+.card .meaning { margin: .3rem 0 .8rem; }
 
 .card details { border-top: 1px dashed var(--line); padding: .45rem 0; }
 .card summary { cursor: pointer; color: var(--green); font-weight: 700; }
@@ -176,4 +224,5 @@ footer a { color: var(--gold-soft); }
 
 @media (max-width: 34rem) {
   .grid { grid-template-columns: 1fr; }
+  .topnav .links { gap: .7rem; }
 }

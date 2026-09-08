@@ -92,3 +92,17 @@ fetch(DATA_URL)
   .catch(() => { errorBox.hidden = false; });
 
 input.addEventListener("input", applyFilter);
+
+// Live per-asset download counts from the GitHub release (graceful fallback).
+fetch("https://api.github.com/repos/rn0x/Names_Of_Allah_Json/releases/latest")
+  .then(res => (res.ok ? res.json() : null))
+  .then(rel => {
+    if (!rel || !Array.isArray(rel.assets)) return;
+    const fmt = n => Number(n || 0).toLocaleString("ar-EG");
+    rel.assets.forEach(a => {
+      document.querySelectorAll(`[data-dl="${a.name}"]`).forEach(el => {
+        el.textContent = fmt(a.download_count);
+      });
+    });
+  })
+  .catch(() => {});

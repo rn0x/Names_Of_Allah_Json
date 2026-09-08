@@ -65,3 +65,14 @@ Example File Json
     <br><br>
     <img src="/Github/1.png" alt="albitaqat">
 </div>
+
+<br><br>
+
+# قاعدة بيانات الأسماء الحسنى الـ99 من كتاب القحطاني (JSON + SQLite + موقع)
+
+إضافة جديدة: استخراج منظم للـ99 اسماً المشروحة في كتاب **«شرح أسماء الله الحسنى في ضوء الكتاب والسنة»** (د. سعيد القحطاني) — بالمعاني والأدلة القرآنية والحديثية (كلٌّ مع مصدره) وأقوال العلماء والمراجع، بنفس ترتيب المؤلف.
+
+- **الموقع التعريفي للتحميل:** https://rn0x.github.io/Names_Of_Allah_Json/
+- **الملف الرئيسي:** [`asma_allah_alhusna_saeed_alqahtani.json`](asma_allah_alhusna_saeed_alqahtani.json)
+- **قاعدة SQLite:** [`data/asma_allah_alhusna.db`](data/asma_allah_alhusna.db) · **SQL:** [`data/asma_allah_alhusna.sql`](data/asma_allah_alhusna.sql) · **CSV:** [`data/`](data/)
+- **التفاصيل الكاملة:** [README الجديد](https://github.com/rn0x/Names_Of_Allah_Json/tree/main/docs) · المصدر: [المكتبة الشاملة](https://shamela.ws/book/96493)
